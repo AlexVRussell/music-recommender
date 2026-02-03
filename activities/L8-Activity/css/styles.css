@@ -173,6 +173,9 @@ input[type="submit"] {
 	font-size: 1.2em;
 	text-transform: capitalize;
 }
+input[id="arrayInput"] {
+	width: 50%;
+}
 
 
 /* 2-Column Layout */
