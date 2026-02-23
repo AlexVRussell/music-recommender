@@ -1,0 +1,31 @@
+body {
+	font-family: Arial, sans-serif;
+	max-width: 420px;
+	margin: 40px auto;
+	padding: 0 16px;
+}
+
+h1 {
+	margin-bottom: 12px;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+input {
+	padding: 8px;
+}
+
+input[type="submit"] {
+	width: fit-content;
+	cursor: pointer;
+}
+
+#register-message,
+#login-message {
+	min-height: 20px;
+	margin: 0 0 10px;
+}
