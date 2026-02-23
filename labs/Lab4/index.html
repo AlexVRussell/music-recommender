@@ -7,15 +7,23 @@
 </head>
 <body>
     <h1>Registration</h1>
-    <form method="post">
+    <p id="register-message" aria-live="polite"></p>
+
+    <form method="post" id="register-form">
         <label>Email:</label>
         <input type="email" id="email" required><br><br>
+
         <label>Username:</label>
         <input type="text" id="username" required><br><br>
+
         <label>Password:</label>
         <input type="password" id="password" required><br><br>
+
         <label>Confirm Password:</label>
         <input type="password" id="confirm_password" required><br><br>
+        <input type="submit" value="Register">
     </form>
+
+     <script src="script.js"></script>
 </body>
 </html>
