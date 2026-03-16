@@ -1,0 +1,13 @@
+# Environment variables and secrets
+.env
+.env.local
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/
