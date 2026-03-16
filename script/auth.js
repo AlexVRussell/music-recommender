@@ -8,6 +8,9 @@ require('dotenv').config(); // get env variables
 const SPOTIFY_CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
 const SPOTIFY_CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
 
+if (!SPOTIFY_CLIENT_ID || !SPOTIFY_CLIENT_SECRET) {
+    throw new Error("Missing or Invalid Spotify API credentials.");
+}
 // First we get an access token from Spotify's API
 const fetchAccessToken = async () => {
     const response = await fetch("https://accounts.spotify.com/api/token", {
@@ -18,6 +21,10 @@ const fetchAccessToken = async () => {
         },
         body: "grant_type=client_credentials"
     });
+    if (!response.ok) {
+        const dataErr = await response.json();
+        throw new Error("Failed to fetch access token: " + response.status + "\n" + JSON.stringify(dataErr));
+    }
     const data = await response.json();
     return data.access_token;
 }
