@@ -7,6 +7,14 @@
 # Logs
 *.log
 
+# Node dependencies
+node_modules/
+
+# Keep repo focused on music recommender
+activities/
+labs/
+__MACOSX/
+
 # OS/editor noise
 .DS_Store
 Thumbs.db

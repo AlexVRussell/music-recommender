@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Music Recommender</title>
+	<link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+	<main class="container">
+		<h1>Music Recommender</h1>
+		<p>Enter an artist name to get recommended tracks from Spotify.</p>
+
+		<form class="search-form" data-search-form>
+			<label for="artist-name">Artist name</label>
+			<input id="artist-name" name="artist" type="text" placeholder="The Weeknd" data-artist-input>
+			<button type="submit">Search</button>
+			<p class="feedback" data-feedback data-state="neutral" role="status" aria-live="polite">Search for an artist to load recommendations.</p>
+		</form>
+
+		<section class="results" data-results hidden>
+			<h2>Artist</h2>
+			<div class="artist-card" data-artist-card></div>
+
+			<h2>Recommended Tracks</h2>
+			<div class="tracks-grid" data-tracks-grid></div>
+		</section>
+	</main>
+
+	<script src="/js/app.js"></script>
+</body>
+</html>
