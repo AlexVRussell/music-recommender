@@ -18,11 +18,6 @@ const CONTENT_TYPES = {
     '.js': 'application/javascript'
 };
 
-const sendJson = (response, statusCode, payload) => {
-    response.writeHead(statusCode, { 'Content-Type': 'application/json' });
-    response.end(JSON.stringify(payload));
-};
-
 const server = http.createServer(async (request, response) => {
     const requestUrl = new URL(request.url, 'http://localhost');
 
@@ -30,23 +25,27 @@ const server = http.createServer(async (request, response) => {
         const artist = requestUrl.searchParams.get('artist')?.trim();
 
         if (!artist) {
-            sendJson(response, 400, { error: 'Artist query is required.' });
+            response.writeHead(400, { 'Content-Type': 'application/json' });
+            response.end(JSON.stringify({ error: 'Artist query is required.' }));
             return;
         }
 
         try {
             const recommendations = await getArtistRecommendations(artist);
-            sendJson(response, 200, recommendations);
+            response.writeHead(200, { 'Content-Type': 'application/json' });
+            response.end(JSON.stringify(recommendations));
         } catch (error) {
             const statusCode = error.message === 'No matching artist found' ? 404 : 500;
-            sendJson(response, statusCode, { error: error.message });
+            response.writeHead(statusCode, { 'Content-Type': 'application/json' });
+            response.end(JSON.stringify({ error: error.message }));
         }
 
         return;
     }
 
     if (request.method !== 'GET') {
-        sendJson(response, 405, { error: 'Method not allowed' });
+        response.writeHead(405, { 'Content-Type': 'application/json' });
+        response.end(JSON.stringify({ error: 'Method not allowed' }));
         return;
     }
 
@@ -66,7 +65,8 @@ const server = http.createServer(async (request, response) => {
         response.writeHead(200, { 'Content-Type': contentType });
         response.end(fileContents);
     } catch (error) {
-        sendJson(response, 500, { error: 'Failed to load file' });
+        response.writeHead(500, { 'Content-Type': 'application/json' });
+        response.end(JSON.stringify({ error: 'Failed to load file' }));
     }
 });
 

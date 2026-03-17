@@ -1,9 +1,5 @@
 const { getArtistRecommendations } = require('../../js/spotifyHandler');
 
-/**
- * Netlify Function for Spotify recommendations.
- * GET /.netlify/functions/recommendations?artist=...
- */
 exports.handler = async (event) => {
     if (event.httpMethod !== 'GET') {
         return {
